@@ -1,0 +1,11 @@
+[package]
+name = "connect-four"
+version = "0.1.0"
+authors = ["Sargon <sargon@me.com>"]
+
+[[bin]]
+name = "connect-four"
+path = "src/main.rs"
+
+[dependencies]
+error-chain = "*"
