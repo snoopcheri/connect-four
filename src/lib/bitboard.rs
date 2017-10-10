@@ -67,3 +67,56 @@ impl Display for BitBoard {
         write!(formatter, "{}", str)
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+
+    #[test]
+    fn set_bit() {
+        // arrange
+        let mut bb = BitBoard::default();
+
+        // act
+        bb.set_bit(0);
+        bb.set_bit(1);
+        bb.set_bit(60);
+        bb.set_bit(63);
+
+        // assert
+        assert_eq!(bb.0, 0x9000_0000_0000_0003);
+    }
+
+
+    #[test]
+    fn clear_bit() {
+        // arrange
+        let mut bb = BitBoard::default();
+        bb.0 = 0xffff_ffff_ffff_ffff;
+
+        // act
+        bb.clear_bit(0);
+        bb.clear_bit(1);
+        bb.clear_bit(60);
+        bb.clear_bit(63);
+
+        // assert
+        assert_eq!(bb.0, 0x6fff_ffff_ffff_fffc)
+    }
+
+
+    #[test]
+    fn count_ones() {
+        // arrange
+        let mut bb = BitBoard::default();
+        bb.0 = 42;
+
+        // act
+        let ones = bb.count_ones();
+
+        // assert
+        assert_eq!(ones, 3);
+    }
+}
