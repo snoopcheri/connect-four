@@ -4,22 +4,15 @@
 extern crate error_chain;
 
 
-mod errors {
-    error_chain! {
-        foreign_links {
-            Io(::std::io::Error);
-        }
-    }
-}
-
-
-
-use errors::*;
-use errors::Result;
-
-
 mod lib;
 use lib::prelude::*;
+
+
+mod errors {
+    error_chain! { }
+}
+
+use errors::Result;
 
 
 fn main() {
@@ -42,7 +35,14 @@ fn main() {
 
 
 fn run() -> Result<()> {
-    let bb= BitBoard::new();
+    let mut bb= BitBoard::default();
+
+    bb.set_bit(3*8);
+    bb.set_bit(3*8 + 1);
+    bb.set_bit(3*8 + 2);
+    bb.clear_bit(3*8 + 1);
+
+    println!("bb: #1={}\n{}", bb.count_ones(), bb);
 
     Ok(())
 }

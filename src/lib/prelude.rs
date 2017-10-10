@@ -1,1 +1,1 @@
-pub use super::bitboard::BitBoard;
+pub use lib::bitboard::BitBoard;
