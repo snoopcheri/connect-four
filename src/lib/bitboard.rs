@@ -42,27 +42,24 @@ impl Display for BitBoard {
         let mut str = String::new();
 
         for y in (0..6).rev() {
-            str.push_str(&(y+1).to_string());
+            str.push_str(&y.to_string());
 
             for x in 0..7 {
+                str.push(' ');
+
                 let position = (x * 8) + y;
 
                 if self.is_bit_set(position) {
-                    str.push_str(" *");
+                    str.push('*');
                 } else {
-                    str.push_str(" .");
+                    str.push('.');
                 }
             }
 
             str.push_str("\n");
         }
 
-        str.push_str(" ");
-        for x in 0..7 {
-            let ch = (x + b'A') as char;
-            str.push_str(&format!(" {}", ch));
-        }
-        str.push_str("\n");
+        str.push_str(" 0 1 2 3 4 5 6\n");
 
         write!(formatter, "{}", str)
     }

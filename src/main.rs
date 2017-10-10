@@ -35,14 +35,13 @@ fn main() {
 
 
 fn run() -> Result<()> {
-    let mut bb= BitBoard::default();
+    let mut board = Board::default();
 
-    bb.set_bit(3*8);
-    bb.set_bit(3*8 + 1);
-    bb.set_bit(3*8 + 2);
-    bb.clear_bit(3*8 + 1);
+    board.set_player_at(Player::Eques, 3*8);
+    board.set_player_at(Player::Knott, 3*8 + 1);
+    board.set_player_at(Player::Eques, 3*8 + 2);
 
-    println!("bb: #1={}\n{}", bb.count_ones(), bb);
+    println!("{}", board);
 
     Ok(())
 }
